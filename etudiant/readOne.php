@@ -15,7 +15,7 @@ header("Access-Control-Max-Age: 3600");
 // Entêtes autorisées
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // La bonne méthode est utilisée
     include_once '../config/database.php';
     include_once '../models/etudiant.php';
@@ -25,9 +25,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $db = $database->getConnexion();
     // On instancie les etudiants
     $etudiant = new etudiant($db);
-
-    $donnees = json_decode(file_get_contents("php://input"));
-    echo json_encode(array("message" => $donnees));
+    $donnees = json_decode(json_encode(array("idEtudiant" => (intval($_POST["idEtudiant"])))));
+    //$donnees = $_POST["idEtudiant"];
+    //$donnees1 = json_decode(file_get_contents("php://input"));
+    echo json_encode(array("message" => ($donnees)));
+    //echo json_encode(array("message" => ($donnees1)));
     if(!empty($donnees->idEtudiant)){
         $etudiant->idEtudiant = $donnees->idEtudiant;
 
@@ -57,6 +59,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             echo json_encode(array("message" => "Le produit n'existe pas."));
         }
 
+    }else{
+        // 404 Not found
+        http_response_code(404);
+
+        echo json_encode(array("message" => "Le produit n'existe pas."));
     }
 }else{
     // On gère l'erreur
