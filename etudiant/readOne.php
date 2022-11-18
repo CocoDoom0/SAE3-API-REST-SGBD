@@ -25,11 +25,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $db = $database->getConnexion();
     // On instancie les etudiants
     $etudiant = new etudiant($db);
+
+    //On recupere les informations mis en data grace a POST
     $donnees = json_decode(json_encode(array("idEtudiant" => (intval($_POST["idEtudiant"])))));
-    //$donnees = $_POST["idEtudiant"];
-    //$donnees1 = json_decode(file_get_contents("php://input"));
-    echo json_encode(array("message" => ($donnees)));
-    //echo json_encode(array("message" => ($donnees1)));
+
+
     if(!empty($donnees->idEtudiant)){
         $etudiant->idEtudiant = $donnees->idEtudiant;
 
