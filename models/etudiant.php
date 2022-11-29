@@ -35,7 +35,7 @@
 
 
             //Ecriture de la requête SQL
-            $sql = "INSERT INTO". $this->table . " SET nom=:nom, prenom=:prenom, parcours=:parcours, idDemiGroupe=:idDemiGroupe";
+            $sql = "INSERT INTO ". $this->table . " SET nom=:nom, prenom=:prenom, parcours=:parcours, idDemiGroupe=:idDemiGroupe";
 
             //Preparation de la requête
             $query = $this->connexion->prepare($sql);
