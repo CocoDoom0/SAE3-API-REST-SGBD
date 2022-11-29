@@ -117,7 +117,7 @@
             // AJOUT CONTRAINTE POUR PARCOURS A FAIRE
 
             //Ecriture de la requête SQL
-            $sql = "UPDATE ". $this->table ."SET nom=:nom, prenom=:prenom, parcours=:parcours, idDemiGroupe=:idDemiGroupe WHERE idEtudiant = :idEtudiant";
+            $sql = "UPDATE ". $this->table ." SET nom = :nom, prenom = :prenom, parcours = :parcours, idDemiGroupe = :idDemiGroupe WHERE idEtudiant = :idEtudiant";
 
             //Preparation de la requête
             $query = $this->connexion->prepare($sql);
